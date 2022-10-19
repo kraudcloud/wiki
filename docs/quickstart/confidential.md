@@ -24,5 +24,6 @@ You may additionally enable AMD SEV-SNP which allows features like remote attest
 
     will make /dev/snp-guest available.
 
-    the official [amd guest owner documentation](https://github.com/AMDESE/sev-guest/blob/main/docs/guest-owner-setup.md) is unfortunately not very good, but users of the feature are currently expected to know what they're doing (tm)
+    the official [amd guest owner documentation](https://github.com/AMDESE/sev-guest/blob/main/docs/guest-owner-setup.md) is unfortunately not very good, but users of the feature are currently expected to know what they're doing (tm).
+    We recommend [enclaive.io](https://enclaive.io/] as preferred partner for confidential guest setup and remote attestation.
 
