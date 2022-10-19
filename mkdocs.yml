@@ -8,9 +8,6 @@ theme:
     - navigation.tabs
     - navigation.instant
 
-plugins:
-  - social
-
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
