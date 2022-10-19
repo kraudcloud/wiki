@@ -1,6 +1,12 @@
-site_name: Kraud Cloud
+site_name: Kraud Cloud Documentation
 theme:
   name: material
+  features:
+    - content.tabs.link
+    - navigation.expand
+    - navigation.sections
+    - navigation.tabs
+    - navigation.instant
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -8,5 +14,25 @@ markdown_extensions:
       use_pygments: true
       linenums: true
       anchor_linenums: true
+  - pymdownx.superfences:
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list:
+  - md_in_html:
+  - admonition:
 
-  - pymdownx.superfences
+
+
+# Page tree
+nav:
+  - Home:
+      - Introduction: index.md
+      - Mission: mission.md
+  - Getting started:
+    - Setup: quickstart/setup.md
+    - Container Images: quickstart/images.md
+    - Incomming Connections: quickstart/ingress.md
+    - Persistent Volumes: quickstart/volumes.md
+    - Confidential Compute: quickstart/confidential.md
