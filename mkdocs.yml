@@ -1,6 +1,7 @@
 site_name: Kraud Cloud Documentation
 theme:
   name: material
+  custom_dir: overrides
   features:
     - content.tabs.link
     - navigation.expand
