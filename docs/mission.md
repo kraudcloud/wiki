@@ -33,13 +33,16 @@ Why would you want to manage an entire k8s cluster with 3 managment nodes sittin
 when you can get a free control plane and still isolated private workload pods.
 
 
-## Hybrid
+## Self hosting / hybrid cloud / ethics
 
 In 2022, it's become an actual credible risk that some billionaire might just buy your cloud provider for fun (?). Weird times.
 
 Kraud is built with hybrid cloud in mind. We're no big tech venture seeking to monopolize the worlds data.
-Building our own datacenters is a major part of achieving 80% energy saving,
-but having your own hardware in your own building has its own set of advantages.
+
+Building our own datacenters is a major part of achieving 80% energy saving, but having your own hardware in your own building has its own set of advantages.
+
+Emulating docker (swarm) and kubernetes means we have zero lock in effect.
+While that's bad for getting venture funding, it's good for you, the user.
 
 
 ## Architecture
