@@ -16,7 +16,8 @@ We want to take a shot at big tech cloud services with an alternative that is
 
 
 [According to the FT](https://www.ft.com/content/0c69d4a4-2626-418d-813c-7337b8d5110d) Big tech uses roughly as much energy as New Zealand.
-Imagine if we could save 80% of that.
+
+We could save 80% of that, by fundamentally reshaping the way cloud computing works.
 
 Since we're accepting zero venture funding, we won't get there without you, the customers.
 
