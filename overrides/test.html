@@ -1,149 +1,146 @@
+{% extends "main.html" %}
+
+{% block styles %}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KraudCloud - free managed kubernetes</title>
+<meta name="description" content="Free Kubernetes hybrid cloud with confidentiality and carbon-negativity.">
+
+<meta property="og:title" content=KraudCloud>
+<meta property="og:site_name" content=KraudCloud>
+<meta property="og:url" content=https://kraudcloud.com>
+<meta property="og:description" content="Free Kubernetes hybrid cloud with confidentiality and carbon-negativity.">
+<meta property="og:type" content=website>
+
+<meta name="twitter:image" content="https://kraudcloud.com/social.png">
+<meta name="twitter:description" content="Free Kubernetes hybrid cloud with confidentiality and carbon-negativity.">
+
+
+<link rel="stylesheet" href="./assets/stylesheets/style.css" />
+
+<script type="module" src="./assets/javascripts/test.js"></script>
+
+<script nomodule src="https://unpkg.com/webp-hero@0.0.2/dist-cjs/polyfills.js"></script>
+<script nomodule src="https://unpkg.com/webp-hero@0.0.2/dist-cjs/webp-hero.bundle.js"></script>
+
+<meta name="theme-color" content="#12a97e">
+
+<style data="numbers" type="text/css"></style>
+{% endblock %}
+
+<!-- Content -->
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>KraudCloud - free managed kubernetes</title>
-    <meta name="description" content="Free Kubernetes hybrid cloud with confidentiality and carbon-negativity.">
-
-    <meta property="og:title" content=KraudCloud>
-    <meta property="og:site_name" content=KraudCloud>
-    <meta property="og:url" content=https://kraudcloud.com>
-    <meta property="og:description" content="Free Kubernetes hybrid cloud with confidentiality and carbon-negativity.">
-    <meta property="og:type" content=website>
-
-    <meta name="twitter:image" content="https://kraudcloud.com/social.png">
-    <meta name="twitter:description" content="Free Kubernetes hybrid cloud with confidentiality and carbon-negativity.">
-
-
-    <link rel="stylesheet" href="./assets/stylesheets/style.css" />
-
-    <script type="module" src="./assets/javascripts/test.js"></script>
-
-    <script nomodule src="https://unpkg.com/webp-hero@0.0.2/dist-cjs/polyfills.js"></script>
-    <script nomodule src="https://unpkg.com/webp-hero@0.0.2/dist-cjs/webp-hero.bundle.js"></script>
-
-    <meta name="theme-color" content="#12a97e">
-
-    <style data="numbers" type="text/css"></style>
-</head>
-
-<body>
-    <section class="section_plan">
-        <div class="plan_wrapper wrapper">
-            <div class="plan_block plan_block-left">
-                <div class="plan_img-wrapper">
-                    <img id="plan_img1" src="./assets/images/plan_img1.svg" alt="image" width="96" height="101" />
-                    <img id="plan_img2" src="./assets/images/plan_img2.svg" alt="image" width="115" />
-                    <img id="plan_img3" src="./assets/images/plan_img2.svg" alt="image" width="110" />
-                    <img id="plan_img4" src="./assets/images/plan_img2.svg" alt="image" width="60" />
-                    <img id="plan_img5" src="./assets/images/plan_img2.svg" alt="image" width="85" />
-                </div>
-
-                <h2 class="plan_title">How much is the fish?</h2>
-                <p class="plan_subtitle">Pricing is based on total cluster memory.</p>
-                <a href="/auth/login" target="_blank" class="button button_primary button_glow button_plan">
-                    <img id="button_shine" src="./assets/images/btn_shine.svg" alt="">
-                    I want to try
-                </a>
+<section class="section_plan">
+    <div class="plan_wrapper wrapper">
+        <div class="plan_block plan_block-left">
+            <div class="plan_img-wrapper">
+                <img id="plan_img1" src="./assets/images/plan_img1.svg" alt="image" width="96" height="101" />
+                <img id="plan_img2" src="./assets/images/plan_img2.svg" alt="image" width="115" />
+                <img id="plan_img3" src="./assets/images/plan_img2.svg" alt="image" width="110" />
+                <img id="plan_img4" src="./assets/images/plan_img2.svg" alt="image" width="60" />
+                <img id="plan_img5" src="./assets/images/plan_img2.svg" alt="image" width="85" />
             </div>
 
-            <div class="plan_block plan_block-right">
+            <h2 class="plan_title">How much is the fish?</h2>
+            <p class="plan_subtitle">Pricing is based on total cluster memory.</p>
+            <a href="/auth/login" target="_blank" class="button button_primary button_glow button_plan">
+                <img id="button_shine" src="./assets/images/btn_shine.svg" alt="">
+                I want to try
+            </a>
+        </div>
 
-                <div class="plan_block-item">
-                    <h4 class="plan_block-title">Batteries included</h4>
-                    <p class="plan_block-text">Everything else is included. No surprising charges, no hidden fees.</p>
+        <div class="plan_block plan_block-right">
+
+            <div class="plan_block-item">
+                <h4 class="plan_block-title">Batteries included</h4>
+                <p class="plan_block-text">Everything else is included. No surprising charges, no hidden fees.</p>
+            </div>
+
+            <div class="plan_block-item">
+                <h4 class="plan_block-title">Scale at any time</h4>
+                <p class="plan_block-text">Adjust your plan dynamically. You'll be charged monthly for the highest
+                    selected limit.</p>
+            </div>
+        </div>
+    </div>
+
+    <label class="range js-range">
+        <div class="wrapper">
+            <div class="range__input-wrapper">
+                <button class="range__button js-range__button--decrease">
+                    <svg id="image--decrease" width="24" height="25" viewBox="0 0 24 25" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13.25 12.5C13.25 12.0858 13.5858 11.75 14 11.75H19C19.4142 11.75 19.75 12.0858 19.75 12.5C19.75 12.9142 19.4142 13.25 19 13.25H14C13.5858 13.25 13.25 12.9142 13.25 12.5Z"
+                            fill="#F5F5F6" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4.25 12.5C4.25 12.0858 4.58579 11.75 5 11.75H14C14.4142 11.75 14.75 12.0858 14.75 12.5C14.75 12.9142 14.4142 13.25 14 13.25H5C4.58579 13.25 4.25 12.9142 4.25 12.5Z"
+                            fill="#F5F5F6" />
+                    </svg>
+                </button>
+
+                <input class="range__input js-range__input" type="range" min="1" max="9" step="1" value="1"
+                    data-value="1">
+
+                <button class="range__button js-range__button--increase">
+                    <svg id="image--increase" width="24" height="25" viewBox="0 0 24 25" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 4.75C12.4142 4.75 12.75 5.08579 12.75 5.5V8.5C12.75 8.91421 12.4142 9.25 12 9.25C11.5858 9.25 11.25 8.91421 11.25 8.5V5.5C11.25 5.08579 11.5858 4.75 12 4.75ZM4.25 12.5C4.25 12.0858 4.58579 11.75 5 11.75H8C8.41421 11.75 8.75 12.0858 8.75 12.5C8.75 12.9142 8.41421 13.25 8 13.25H5C4.58579 13.25 4.25 12.9142 4.25 12.5ZM15.25 12.5C15.25 12.0858 15.5858 11.75 16 11.75H19C19.4142 11.75 19.75 12.0858 19.75 12.5C19.75 12.9142 19.4142 13.25 19 13.25H16C15.5858 13.25 15.25 12.9142 15.25 12.5ZM12 15.75C12.4142 15.75 12.75 16.0858 12.75 16.5V19.5C12.75 19.9142 12.4142 20.25 12 20.25C11.5858 20.25 11.25 19.9142 11.25 19.5V16.5C11.25 16.0858 11.5858 15.75 12 15.75Z"
+                            fill="#F5F5F6" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 7.75C12.4142 7.75 12.75 8.08579 12.75 8.5V11.75H16C16.4142 11.75 16.75 12.0858 16.75 12.5C16.75 12.9142 16.4142 13.25 16 13.25H12.75V16.5C12.75 16.9142 12.4142 17.25 12 17.25C11.5858 17.25 11.25 16.9142 11.25 16.5V13.25H8C7.58579 13.25 7.25 12.9142 7.25 12.5C7.25 12.0858 7.58579 11.75 8 11.75H11.25V8.5C11.25 8.08579 11.5858 7.75 12 7.75Z"
+                            fill="#F5F5F6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="range__output-wrapper">
+                <div class="range__output-item range__output-item1">
+                    <div class="range__value">
+                        <ul id="js-range__amount">
+                            <li> 4 </li>
+                            <li> 8 </li>
+                            <li> 16 </li>
+                            <li> 32 </li>
+                            <li> 64 </li>
+                            <li> 128 </li>
+                            <li> 256 </li>
+                            <li> 512 </li>
+                            <li> 1 </li>
+                        </ul>
+                    </div>
+
+                    <img class="range__img" id="js-range__gb" src="./assets/images/gigabyte.svg" alt="gb">
+                    <img class="range__img" id="js-range__tb" src="./assets/images/tbyte.svg" alt="tb">
+                    <p class="range__text">Memory</p>
                 </div>
 
-                <div class="plan_block-item">
-                    <h4 class="plan_block-title">Scale at any time</h4>
-                    <p class="plan_block-text">Adjust your plan dynamically. You'll be charged monthly for the highest
-                        selected limit.</p>
+                <div class="range__output-item">
+                    <img class="range__img range__img-euro" src="./assets/images/euro.svg" alt="euro">
+
+                    <div class="range__value range__value-price">
+                        <ul id="js-range__price">
+                            <li> 20 </li>
+                            <li> 40 </li>
+                            <li> 80 </li>
+                            <li> 160 </li>
+                            <li> 320 </li>
+                            <li> 640 </li>
+                            <li> 1280 </li>
+                            <li> 2560 </li>
+                            <li> 5120 </li>
+                        </ul>
+                    </div>
+
+                    <p class="range__text">Per Month*</p>
                 </div>
             </div>
         </div>
+    </label>
+</section>
 
-        <label class="range js-range">
-            <div class="wrapper">
-                <div class="range__input-wrapper">
-                    <button class="range__button js-range__button--decrease">
-                        <svg id="image--decrease" width="24" height="25" viewBox="0 0 24 25" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M13.25 12.5C13.25 12.0858 13.5858 11.75 14 11.75H19C19.4142 11.75 19.75 12.0858 19.75 12.5C19.75 12.9142 19.4142 13.25 19 13.25H14C13.5858 13.25 13.25 12.9142 13.25 12.5Z"
-                                fill="#F5F5F6" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M4.25 12.5C4.25 12.0858 4.58579 11.75 5 11.75H14C14.4142 11.75 14.75 12.0858 14.75 12.5C14.75 12.9142 14.4142 13.25 14 13.25H5C4.58579 13.25 4.25 12.9142 4.25 12.5Z"
-                                fill="#F5F5F6" />
-                        </svg>
-                    </button>
-
-                    <input class="range__input js-range__input" type="range" min="1" max="9" step="1" value="1"
-                        data-value="1">
-
-                    <button class="range__button js-range__button--increase">
-                        <svg id="image--increase" width="24" height="25" viewBox="0 0 24 25" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.4" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M12 4.75C12.4142 4.75 12.75 5.08579 12.75 5.5V8.5C12.75 8.91421 12.4142 9.25 12 9.25C11.5858 9.25 11.25 8.91421 11.25 8.5V5.5C11.25 5.08579 11.5858 4.75 12 4.75ZM4.25 12.5C4.25 12.0858 4.58579 11.75 5 11.75H8C8.41421 11.75 8.75 12.0858 8.75 12.5C8.75 12.9142 8.41421 13.25 8 13.25H5C4.58579 13.25 4.25 12.9142 4.25 12.5ZM15.25 12.5C15.25 12.0858 15.5858 11.75 16 11.75H19C19.4142 11.75 19.75 12.0858 19.75 12.5C19.75 12.9142 19.4142 13.25 19 13.25H16C15.5858 13.25 15.25 12.9142 15.25 12.5ZM12 15.75C12.4142 15.75 12.75 16.0858 12.75 16.5V19.5C12.75 19.9142 12.4142 20.25 12 20.25C11.5858 20.25 11.25 19.9142 11.25 19.5V16.5C11.25 16.0858 11.5858 15.75 12 15.75Z"
-                                fill="#F5F5F6" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M12 7.75C12.4142 7.75 12.75 8.08579 12.75 8.5V11.75H16C16.4142 11.75 16.75 12.0858 16.75 12.5C16.75 12.9142 16.4142 13.25 16 13.25H12.75V16.5C12.75 16.9142 12.4142 17.25 12 17.25C11.5858 17.25 11.25 16.9142 11.25 16.5V13.25H8C7.58579 13.25 7.25 12.9142 7.25 12.5C7.25 12.0858 7.58579 11.75 8 11.75H11.25V8.5C11.25 8.08579 11.5858 7.75 12 7.75Z"
-                                fill="#F5F5F6" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="range__output-wrapper">
-                    <div class="range__output-item range__output-item1">
-                        <div class="range__value">
-                            <ul id="js-range__amount">
-                                <li> 4 </li>
-                                <li> 8 </li>
-                                <li> 16 </li>
-                                <li> 32 </li>
-                                <li> 64 </li>
-                                <li> 128 </li>
-                                <li> 256 </li>
-                                <li> 512 </li>
-                                <li> 1 </li>
-                            </ul>
-                        </div>
-
-                        <img class="range__img" id="js-range__gb" src="./assets/images/gigabyte.svg" alt="gb">
-                        <img class="range__img" id="js-range__tb" src="./assets/images/tbyte.svg" alt="tb">
-                        <p class="range__text">Memory</p>
-                    </div>
-
-                    <div class="range__output-item">
-                        <img class="range__img range__img-euro" src="./assets/images/euro.svg" alt="euro">
-
-                        <div class="range__value range__value-price">
-                            <ul id="js-range__price">
-                                <li> 20 </li>
-                                <li> 40 </li>
-                                <li> 80 </li>
-                                <li> 160 </li>
-                                <li> 320 </li>
-                                <li> 640 </li>
-                                <li> 1280 </li>
-                                <li> 2560 </li>
-                                <li> 5120 </li>
-                            </ul>
-                        </div>
-
-                        <p class="range__text">Per Month*</p>
-                    </div>
-                </div>
-            </div>
-        </label>
-    </section>
-</body>
-
-</html>
 {% endblock %}
