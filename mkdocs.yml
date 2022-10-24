@@ -39,3 +39,5 @@ nav:
     - Incomming Connections: quickstart/ingress.md
     - Persistent Volumes: quickstart/volumes.md
     - Confidential Compute: quickstart/confidential.md
+  - Test:
+    - Test page: overrides/test.html
