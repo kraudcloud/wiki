@@ -1,4 +1,4 @@
-# Accepting Incomming Connections
+# Accepting Incoming Connections
 
 Pods are not directly exposed to the internet and do not have a public IP assigned. Instead they are connected to each other using a [wireguard](https://www.wireguard.com/) mesh network.
 

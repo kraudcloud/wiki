@@ -3,7 +3,7 @@
 Images are stored directly in kraud object storage instead of being pulled on each pod start.
 This behaves differently than kubernetes, which pulls images on every start.
 
-Image objects are refferenced by pods using their database id instead of name, which has the advantage that pods remain reproducable even if you upload a different image with the same name.
+Image objects are referenced by pods using their database id instead of name, which has the advantage that pods remain reproducable even if you upload a different image with the same name.
 However, the user experience is currently not the best, and it may be a bit confusing at times.
 
 
