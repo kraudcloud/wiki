@@ -39,3 +39,8 @@ nav:
     - Incoming Connections: quickstart/ingress.md
     - Persistent Volumes: quickstart/volumes.md
     - Confidential Compute: quickstart/confidential.md
+  - Technology:
+    - Compute:  technology/architecture.md
+    - Network:  technology/vpc.md
+    - Storage:  technology/storage.md
+    - Confidential: technology/confidential.md

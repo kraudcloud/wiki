@@ -5,66 +5,40 @@
 We're offering managed kubernetes for free, in Europe, in the middle of an energy crisis, with zero venture funding.
 This is a big leap towards a bigger goal:
 
-We want to take a shot at big tech cloud services with an alternative that is
 
- - a customer-focused business away from the usual capital (mis)allocators
- - with 80% lower energy usage, 100% renewables
- - local / hybrid by default with hardware under user control
+ - a customer-first normal business
+ - with 80% lower energy usage, 100% renewables, CO2 neutral
+ - with data and hardware under user control
 
 
 ## Energy
 
 
-[According to the FT](https://www.ft.com/content/0c69d4a4-2626-418d-813c-7337b8d5110d) Big tech uses roughly as much energy as New Zealand.
+[According to the FT](https://www.ft.com/content/0c69d4a4-2626-418d-813c-7337b8d5110d) Big tech uses roughly as much energy as New Zealand. We could save **80%** of that, by fundamentally reshaping the way cloud computing works. 
 
-We could save 80% of that, by fundamentally reshaping the way cloud computing works.
+The primary driver is a hardcore focus on what customers actually want to *achieve* and optimizing for that workflow. Like Heroku.
 
-Since we're accepting zero venture funding, we won't get there without you, the customers.
+Why would you want to manage an entire k8s cluster with 3 managment nodes sitting idle, when you actually just wanted to launch an *app*. Sure some people might *like* managing computers, but not every product is for everyone.
 
-Here is how you can help us reach that goal:
+Next, instead of just building a converience layer on top of other cloud services, we start with **deleting layers**,  rebuilding everything, from the ground up. Litteraly, the ground.
 
- 1. use free carbon neutral managed k8s
- 2. enable auto suspend rules for containers you dont need all the time.
- 3. buy powerups. we scale pricing according to energy use.
- 4. switch to arm containers for higher power efficiency
- 5. once we have enough customers, we can start vertical building integration using DC power
+Here is the plan
 
-
-Why would you want to manage an entire k8s cluster with 3 managment nodes sitting idle,
-when you can get a free control plane and still isolated private workload pods.
+ - [x] Offer instant app/docker/k8s hosting with 100% renewable energy
+ - [ ] Help developers and customers optimize energy efficiency
+ - [ ] build CO2 neutral datacenters, integrating local environment
 
 
 ## Self hosting / hybrid cloud / ethics
 
-In 2022, it's become an actual credible risk that some billionaire might just buy your cloud provider for fun (?). Weird times.
+In 2022, it's become an actual credible risk that some billionaire might just buy your infrastructure provider for some good fun and trolling. [What a strange timeline](https://duckduckgo.com/?q=elon+musk+buys+twitter)
 
-Kraud is built with hybrid cloud in mind. We're no big tech venture seeking to monopolize the worlds data.
+Kraud is built with hybrid cloud in mind. We take great care to avoid such risk, starting with making it normal and first class to buy your own machine and host your services there. This also means we can't charge you insane amounts of money for just renting a computer in someone elses datacenter.
 
-Building our own datacenters is a major part of achieving 80% energy saving, but having your own hardware in your own building has its own set of advantages.
+*big cloud hates this trick*
 
-Emulating docker (swarm) and kubernetes means we have zero lock in effect.
-While that's bad for getting venture funding, it's good for you, the user.
+Building our own datacenters is a major part of achieving 80% energy saving, but having your own hardware in your own building has its own set of advantages of course. Some laws may even require you to do that for certain types of data. Of course big cloud will say they have all the paperwork that allows you to do it anyway, and so on.
 
+That's because they *loooove* renting you computers. It's a good business. Why don't we rent out computers then? Well, we do. it's a good business, but it's much more ethical to build a business that doesn't rely on unnesesary consumption of energy.
 
-## Architecture
-
-how is this even possible?
-
-The architectural invention starts with not actually using kubernetes.
-We just fake the api for your convenience. Pods are actually implemented as micro-vms with an AMD SEV hypervisor barrier on an HPC cluster.
-
-If you're used to kubernetes, this may be confusing because some endpoints don't actually return any data that makes sense.
-For example nodes returned on kubectl aren't real nodes. We don't actually expose real hardware in any way because it might not be real!
-Your container could run on your phone, transparently.
-
-Your VPC inter-pod network is also entirely private using wireguard to protect against physical intrusion.
-
-The control plane is a proprietary multi-tenancy distributed machine somewhat inspired by the original google borg.
-
-This may lead to a bumpy experience in early stages where we're not done emulating all of the k8s apis,
-but in turn has the advantage that we also emulate other apis for the same virtual cluster, such as docker swarm.
-You can use all of these tools with the same cluster.
-
-Clusters can be as small as 1GB of memory, with the control plane not using any of that.
-The theoretical cluster size limit is 100 Petabyte of main memory, but in practice we currently can't offer more than 1TB due to hardware cost.
 
