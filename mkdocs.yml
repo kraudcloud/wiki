@@ -43,4 +43,4 @@ nav:
     - Compute:  technology/architecture.md
     - Network:  technology/vpc.md
     - Storage:  technology/storage.md
-    - Confidential: technology/confidential.md
+    - Confidential Containers: technology/confidential.md
