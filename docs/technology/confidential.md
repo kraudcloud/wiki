@@ -1,4 +1,4 @@
-The [microvms](http://127.0.0.1:8000/technology/architecture/#microvms)
+The [microvms](/technology/architecture/#microvms)
 on kraud usually run inside some form of transparent memory encryption (subject to availability).
 
 On x86 that's AMD Secure Encrypted Virtualization (SEV), protecting guest memory from other guests and from the hypervisor,
