@@ -22,8 +22,21 @@ You may additionally enable AMD SEV-SNP which allows features like remote attest
     docker run -ti --label kraud.cloud/snp=1 ubuntu
     ```
 
-    will make /dev/snp-guest available.
+    Will make /dev/snp-guest available.
 
-    the official [amd guest owner documentation](https://github.com/AMDESE/sev-guest/blob/main/docs/guest-owner-setup.md) is unfortunately not very good, but users of the feature are currently expected to know what they're doing (tm).
-    We recommend [enclaive.io](https://enclaive.io/) as preferred partner for confidential guest setup and remote attestation.
+## custom attestation
+
+If you want to attest a pod _before_ it is launched using your own systems, you must supply a url to a self contained binary that does the attestation
+
+
+=== "docker"
+    ```
+    docker run -ti \
+        --label kraud.cloud/snp=1 \
+        -e _KR_XCRADLE_URL=https://my.external.site/attestation.elf \
+        ubuntu
+    ```
+
+the official [amd guest owner documentation](https://github.com/AMDESE/sev-guest/blob/main/docs/guest-owner-setup.md) is unfortunately not very good, but users of the feature are currently expected to know what they're doing (tm).
+We recommend [enclaive.io](https://enclaive.io/) as preferred partner for a ready made attestation service.
 
