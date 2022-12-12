@@ -16,10 +16,10 @@ You may additionally enable AMD SEV-SNP which allows features like remote attest
 
 === "docker"
 
-    labeling your container with kraud.cloud/snp=1
+    labeling your container with kr.res.snp=1
 
     ```sh
-    docker run -ti --label kraud.cloud/snp=1 ubuntu
+    docker run -ti -l kr.res.snp=1 ubuntu
     ```
 
     Will make /dev/snp-guest available.
@@ -32,8 +32,8 @@ If you want to attest a pod _before_ it is launched using your own systems, you 
 === "docker"
     ```
     docker run -ti \
-        --label kraud.cloud/snp=1 \
-        -e _KR_XCRADLE_URL=https://my.external.site/attestation.elf \
+        -l kr.res.snp=1 \
+        -l kr.xcradle.url=https://my.external.site/attestation.elf \
         ubuntu
     ```
 
