@@ -6,7 +6,6 @@ If you're familiar with docker networks or kubernetes, this will feel natural. T
 
 Similarly you cannot directly acess pods from the internet. Instead we manage an ingress controller that routes traffics to your pods based on rules such as hostname and path.
 
-
 ## discovering your ingress
 
 your cluster comes with a default ingress and domain managed by kraud.
@@ -42,7 +41,6 @@ currently kubectl is required to interact with the ingress.
 
     ```
 
-
 ## routing your first service
 
 === "docker"
@@ -58,7 +56,6 @@ currently kubectl is required to interact with the ingress.
     ```
 
     will make your container available at https://nginx.123123.1d.pt
-
 
 === "kubectl"
 
@@ -137,7 +134,6 @@ currently kubectl is required to interact with the ingress.
                   number: 80
     ```
 
-
 === "compose"
 
     docker does not have ingresses or services natively, so we generate them from tags.
@@ -181,9 +177,7 @@ currently kubectl is required to interact with the ingress.
     docker stack ls
     ```
 
-
 ## using your own custom domain
-
 
 A domain must be bound to an ingress before it is routed and it can only be bound to one ingress. To bind a domain, put it into a tls field in ingress.
 
@@ -204,23 +198,17 @@ A domain must be bound to an ingress before it is routed and it can only be boun
           - web.example.com
     ```
 
-
-then add a CNAME record "www" to your "example.com" domain
+then add a CNAME record "web" to your "example.com" domain
 with the content being your ingress address, in this example "123123.1d.pt."
 
 depending on your DNS provider, if you want to use the bare "example.com" on your ingress, you might have to use an ALIAS record.
 
-
 !!! info
     there may be a significant delay between adding the domain and it being available in routing. we first have to verify the cname was set correctly before routing traffic to avoid domain takeover attacks.
 
-
-
 ## using a custom wildcard domain
 
-
 adding a wildcard domain such as "*.example.com" allows routing in kraud ingress based on any subdomain of that wildcard without having to set a cname each time.
-
 
 === "kubectl"
 
@@ -245,5 +233,3 @@ adding a wildcard domain such as "*.example.com" allows routing in kraud ingress
     - host: echo.example.com
       http:
     ```
-
-
