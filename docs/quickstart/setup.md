@@ -9,7 +9,7 @@ To access the control plane, login to [https://kraudcloud.com](https://kraudclou
 It's a zip file containing client certificates and instructions how to set up docker and kubectl.
 Note that clicking the download link also invalidates any existing kraud credential you may have downloaded previously.
 
-![login animation](login.gif)
+![login animation](login.png)
 
 
 ## using the kraud remote context

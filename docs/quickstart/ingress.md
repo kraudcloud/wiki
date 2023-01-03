@@ -4,7 +4,7 @@ Pods are not directly exposed to the internet and do not have a public IP assign
 
 If you're familiar with docker networks or kubernetes, this will feel natural. The network is managed for you by the kraud control plane but does **not** intersect with other tenants networks. You cannot directly access a pod in a different account without going through a gateway.
 
-Similarly you cannot directly acess pods from the internet. Instead we manage an ingress controller that routes traffics to your pods based on rules such as hostname and path.
+Similarly you cannot directly acess pods from the internet. Instead we manage an ingress controller that routes traffics to your pods based on rules such as hostname and path or raw tcp port.
 
 ## discovering your ingress
 
@@ -233,3 +233,22 @@ adding a wildcard domain such as "*.example.com" allows routing in kraud ingress
     - host: echo.example.com
       http:
     ```
+
+## raw tcp ingress
+
+if you'd like to take in traffic that is not based on hostnames (http/https or tls with sni) you can open a raw tcp port on the ingress controller. By default each vpc has 4 ports available. More are available as an addon if needed, but you should consider using hostname (sni) routes where possible. Raw tcp ports are **not protected by the CDN** and may be shut down in case of an attack or other event that disturbs other tenants.
+
+
+the syntax for the label is `kr.ingress.{container-port}=tcp://`
+
+then discover the port that was assigned in `docker ps`
+
+```bash
+$ docker --context=kraud.aep run -dti -e MARIADB_ROOT_PASSWORD=bob -l kr.ingress.3306=tcp:// mariadb
+$ docker --context=kraud.aep ps  | grep mariadb
+p913ea5caf9e  [..] 96jpgtx8.1d.pt:28791->3306/tcp default/blithesome_paper
+$ mariadb -h 96jpgtx8.1d.pt -P 28791 -p -u root
+Enter password:
+```
+
+note that exposing mariadb to the internet without tls is probably a terrible idea, this is for demonstration only.
