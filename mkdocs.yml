@@ -23,6 +23,9 @@ markdown_extensions:
   - attr_list:
   - md_in_html:
   - admonition:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 # Custom CSS
 extra_css:
@@ -39,6 +42,8 @@ nav:
     - Incoming Connections: quickstart/ingress.md
     - Persistent Volumes: quickstart/volumes.md
     - Confidential Compute: quickstart/confidential.md
+  - Specification:
+    - Products: specification/products.md
   - Technology:
     - Compute:  technology/architecture.md
     - Network:  technology/vpc.md

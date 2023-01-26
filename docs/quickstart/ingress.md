@@ -252,3 +252,6 @@ Enter password:
 ```
 
 note that exposing mariadb to the internet without tls is probably a terrible idea, this is for demonstration only.
+
+
+## raw IP ingress
