@@ -79,18 +79,17 @@ Note that clicking the download link also invalidates any existing kraud credent
 
 === "docker"
 
-    due to limitations with dockers attach api, every docker run command must use the -ti flags
 
     ```
     docker context use kraud.myuser
-    docker run -ti ubuntu
+    docker run -ti alpine
     ```
 
-    we're still trying to figure out how to properly support docker attached run (without -d).
-    If you get disconnected, just reattach to the container with
+
+    alternatively, to only temporarily switch context:
 
     ```
-    docker attach mycontainer
+    docker --context kraud.myuser run -ti alpine
     ```
 
 
