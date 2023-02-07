@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 
-{% block scripts %}
-  <!-- Add scripts that need to run before here -->
-  {{ super() }}
-  <!-- Add scripts that need to run afterwards here -->
+{% block htmltitle %}
+  {% if page.meta and page.meta.title %}
+  <title>{{ page.meta.title }} - Kraud Cloud Documentation</title>
+  {% elif page.title and not page.is_homepage %}
+  <title>{{ page.title | striptags }} - Kraud Cloud Documentation</title>
+  {% else %}
+  <title>Kraud Cloud Documentation</title>
+  {% endif %}
+{% endblock %}
 
-  <script async defer data-website-id="9e874199-add8-43b6-8556-ee0f98543b90" src="https://umal.kraudcloud.com/umal.js"></script>
+{% block scripts %}
+<!-- Add scripts that need to run before here -->
+{{ super() }}
+<!-- Add scripts that need to run afterwards here -->
+
+<script async defer data-website-id="9e874199-add8-43b6-8556-ee0f98543b90"
+    src="https://umal.kraudcloud.com/umal.js"></script>
 
 {% endblock %}

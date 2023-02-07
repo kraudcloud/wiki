@@ -5,11 +5,73 @@
     --md-accent-fg-color: #18906e;
 }
 
-
 .red {
-  color: red;
+    color: red;
 }
 
-.green{
-  color: green;
+.green {
+    color: green;
+}
+
+.md-header__inner {
+    padding: 0.4rem 0.2rem;
+}
+
+.md-header__button.md-logo {
+    padding: 0;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+    height: 1.6rem;
+}
+
+.md-header__title>.md-header__ellipsis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.md-ellipsis {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.md-ellipsis .custom-link {
+    font-size: 0.8rem;
+}
+
+.md-ellipsis .custom-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1218.98px) {
+    .md-nav__title .custom-link {
+        display: none;
+    }
+}
+
+@media (max-width: 479.98px) {
+    .md-nav__title[for=__drawer] {
+        height: auto !important;
+        padding: 0.8rem 0.8rem 0.2rem !important;
+    }
+
+    .md-nav__title[for=__drawer] .md-nav__button {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: 0 !important;
+        margin: 0 0 0.6rem;
+    }
+
+    .md-nav__title .custom-link {
+        display: block;
+    }
+
+    .md-ellipsis {
+        display: none;
+    }
 }
