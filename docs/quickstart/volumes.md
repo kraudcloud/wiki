@@ -9,15 +9,21 @@ They can be accessed by multiple pods simultaneously and support concurrent read
 This is useful for configs and other shared data that doesn't have high performance requirements.
 Since the intent is to emulate docker volume behavior, this is the default choice if you don't know which volume type you need.
 
+there's two pools:
+
+- **gfs** is the default pool, it is SSD backed and 3 times redundant. this is a safe choice.
+- **red** is a large magnetic disk pool specifically for data science, is is not backed up and will loose data on hardware failure
+
 #### block storage
 
-Block storage is network attached SSD from a ceph cluster.
-It has redundant and has much better performance than file volumes.
+Block storage uses the pools as blocks instead of files.
 Usually it will be automatically formated and mounted as ext4 but can also be used as raw block device available in /dev/volumes/ by not specifying any volumeMounts.
 Note that block storage cannot migrate between datacenter segments. It can only be used by pods within the same segments.
 Block storage is pre-allocated and immediately counts towards your plans storage limit when allocated.
 It can be scaled up at any time by re-applying the object with a larger size.
 To reduce the size of a volume you must delete and recreate it.
+
+magnetic disk is not available as blocks. the redundant SSD cluster is called **rbd**
 
 #### ephemeral nvme
 
@@ -129,3 +135,18 @@ This is useful for caches which require very high write performance.
     ```
 
 
+## using a non default pool
+
+
+
+=== "docker"
+
+    ```sh
+    docker volume create datalake --driver red --label size=500G
+    docker run -v datalake:/data -ti ubuntu
+    ```
+
+
+## GFS and Confidential Compute
+
+GFS is available on confidential containers, but due to lack of virtio DAX the transport is 9p instead of virtio. Unix file permissions will not correctly synchronize between confidential and non-confidential containers, and IOPS are constrained to roughly half that of regular containers.

@@ -1,4 +1,4 @@
-site_name: Kraud Cloud Documentation
+site_name: Kraud Cloud
 theme:
   logo: assets/logo.svg
   name: material
@@ -34,19 +34,23 @@ extra_css:
 
 # Page tree
 nav:
-  - Home:
-      - Introduction: index.md
-      - Mission: mission.md
-  - Getting started:
-    - Setup: quickstart/setup.md
-    - Container Images: quickstart/images.md
-    - Incoming Connections: quickstart/ingress.md
-    - Persistent Volumes: quickstart/volumes.md
-    - Confidential Compute: quickstart/confidential.md
-  - Specification:
-    - Products: specification/products.md
-  - Technology:
-    - Compute:  technology/architecture.md
-    - Network:  technology/vpc.md
-    - Storage:  technology/storage.md
-    - Confidential Containers: technology/confidential.md
+  - Home: http://kraudcloud.com
+  - Documentation:
+    - Introduction: index.md
+    - Mission: mission.md
+    - Getting Started:
+      - Setup: quickstart/setup.md
+      - Container Images: quickstart/images.md
+      - Incoming Connections: quickstart/ingress.md
+      - Persistent Volumes: quickstart/volumes.md
+      - Confidential Compute: quickstart/confidential.md
+    - Technology:
+      - Compute:  technology/architecture.md
+      - Network:  technology/vpc.md
+      - Storage:  technology/storage.md
+      - Confidential Containers: technology/confidential.md
+    - Specification:
+      - Products: specification/products.md
+  - Blog:
+    - Index: blog/index.md
+  - Dashboard: http://kraudcloud.com/dashboard/
