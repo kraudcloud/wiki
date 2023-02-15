@@ -49,8 +49,8 @@ nav:
       - Network:  technology/vpc.md
       - Storage:  technology/storage.md
       - Confidential Containers: technology/confidential.md
-    - Specification:
-      - Products: specification/products.md
+    - Product:
+      - Specification: product/specification.md
   - Blog:
     - Index: blog/index.md
   - Dashboard: http://kraudcloud.com/dashboard/
