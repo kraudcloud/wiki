@@ -2,7 +2,8 @@
 date: 2022-01-31
 authors: [aep]
 categories:
- - announcements
+ - product
+ - tech
 ---
 
 

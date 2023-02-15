@@ -12,4 +12,4 @@ for dev:
 
 for prod:
 
-    mkdocs build
+    mkdocs  -f mkdocs.insiders.yml build
