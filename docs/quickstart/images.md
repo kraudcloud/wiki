@@ -10,6 +10,14 @@ However, the user experience is currently not the best, and it may be a bit conf
 
 ## managing images
 
+=== "kra"
+
+    kra offers basic remote image managment,
+    but docker cli might be required for some actions for now.
+
+    ```sh
+    kra images ls
+    ```
 === "docker"
 
     docker supports images natively, so the regular image commands work out of the box
@@ -63,12 +71,18 @@ However, the user experience is currently not the best, and it may be a bit conf
 ## importing locally built images
 
 
-you can copy any image you built locally to the cloud using
+you can copy any image you built locally to the cloud using kra push.
 
 
-=== "docker"
+```sh
+kra push
+```
 
 
-    ```sh
-    docker --context default save myimage | docker --context kraud.myorg load
-    ```
+it is also possible to load images using the docker cli,
+but this is slow and will no longer be supported once all use cases are covered by kra
+
+
+```sh
+docker --context default save myimage | docker --context kraud.myorg load
+```

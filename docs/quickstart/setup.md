@@ -2,14 +2,31 @@
 
 # Setup
 
-kraud supports both the docker and kubernetes api at the same time in the same cluster.
+kraud supports docker, swarm and compose at the same time in the same cluster.
 You can mix and match the tools that best for your workflow.
 
-To access the control plane, login to [https://kraudcloud.com](https://kraudcloud.com) and download the credentials from your account profile.
-It's a zip file containing client certificates and instructions how to set up docker and kubectl.
-Note that clicking the download link also invalidates any existing kraud credential you may have downloaded previously.
+If you came here looking for kubernetes, note that k8s compatbility is frozen and bugs will not be fixed.  Docker and the kra cli are actively managed, and we encourage you to give feedback on missing features.
+
+To access the control plane, download the [latest cli from github](https://github.com/kraudcloud/cli/releases/)
+
+Then head over to [https://kraudcloud.com](https://kraudcloud.com) to obtain an api key.
+Note that clicking the refresh button invalidates any existing key you may have downloaded previously.
 
 ![login animation](login.png)
+
+
+use the token to authenticate the cli
+
+```bash
+kra login $mytoken
+```
+
+
+then setup the docker remote context with
+
+```bash
+kra setup docker
+```
 
 
 ## using the kraud remote context
@@ -33,6 +50,10 @@ Note that clicking the download link also invalidates any existing kraud credent
 === "kubectl"
 
     install the official kubernetes tools from [https://kubernetes.io/docs/tasks/tools/](https://kubernetes.io/docs/tasks/tools/)
+
+    Note that only kubectl version v1.25 works.
+    We will no longer maintain api compatbility with kubernetes from v1.26 onwoards and instead
+    encourage users who want  k8s to switch to [kind](https://kind.sigs.k8s.io/) instead
 
     to switch contexts use
 

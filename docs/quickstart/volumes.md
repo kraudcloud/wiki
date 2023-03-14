@@ -14,6 +14,7 @@ there's two pools:
 - **gfs** is the default pool, it is SSD backed and 3 times redundant. this is a safe choice.
 - **red** is a large magnetic disk pool specifically for data science, is is not backed up and will loose data on hardware failure
 
+
 #### block storage
 
 Block storage uses the pools as blocks instead of files.
@@ -146,7 +147,17 @@ This is useful for caches which require very high write performance.
     docker run -v datalake:/data -ti ubuntu
     ```
 
+## WebDAV Access
+
+volumes can be accessed via webdav via https://files.kraudcloud.com or davs://files.kraudcloud.com depending on your client.
+
+You will find username/password in your [profile](https://kraudcloud.com/profile) under "Files Login".
+
+
+
+
 
 ## GFS and Confidential Compute
 
 GFS is available on confidential containers, but due to lack of virtio DAX the transport is 9p instead of virtio. Unix file permissions will not correctly synchronize between confidential and non-confidential containers, and IOPS are constrained to roughly half that of regular containers.
+
