@@ -22,7 +22,8 @@ Kraud is a Platform as a Service (PaaS) with a broad set of features and compati
 | Ephemeral NVME        | no  | :material-alert:{.red} 0 (4)             | ephemeral encryption | Usable |
 | Block Volumes         | no  | :material-check:{ .green } 3N in 1 Zone  | isolated machine     | Usable |
 | GFS Volumes           | no  | :material-check:{ .green } 3N in 1 Zone  | isolated machine     | Experimental |
-| Red Volumes           | no  | :material-alert:{.red}  2N in 1 Zone (5) | isolated machine     | Experimental |
+| RED Volumes           | no  | :material-alert:{.red}  2N in 1 Zone (5) | isolated machine     | Experimental |
+| LV Volumes            | no  | :material-alert:{.red}  2N on 1 Host (6) | LVM | Usable |
 
 !!! quote ""
     1. Hardware with AMD SEV-SNP is has very limited availability and pods will likely not be rescheduled on failure.
@@ -30,6 +31,7 @@ Kraud is a Platform as a Service (PaaS) with a broad set of features and compati
     3. Direct exposure to the internet without a fronting kraud ingress requires a carefully setup firewall inside the vm
     4. Local node storage is very fast but ephemeral. It is cleared on container shutdown, restart, reschedule, etc.
     5. Redundancy reduced volumes are intended for archival and large data pools. Loss is unlikely due to double-replication, but customer are adviced to only store data that can be reconstructed by other means.
+    6. LV are local nvmes on a vm host that are not replicated outside of the chassis, intended for legacy applications. Customers are advised to build their own backup plan.
 
 
 
