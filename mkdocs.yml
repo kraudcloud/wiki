@@ -51,6 +51,7 @@ nav:
       - Confidential Containers: technology/confidential.md
     - Product:
       - Specification: product/specification.md
+      - Pricing: product/pricing.md
   - Blog:
     - Index: blog/index.md
   - Dashboard: http://kraudcloud.com/dashboard/
