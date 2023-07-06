@@ -6,7 +6,7 @@ We're currently only selling upgrades to registered businesses with a VAT ID.
 Prices are still fluctuating a bit as we're figuring our cost.
 We offer longer term price commitements on request.
 
-All prices are without VAT (B2B only)
+All prices are without VAT. We currently do not sell to consumers.
 
 ## Compute pools
 
@@ -20,15 +20,20 @@ All prices are without VAT (B2B only)
 | 64Pool   | 64GB   | 32   | 800GB            | 800GB    | 100 €/p.m.     |
 | 128Pool  | 128GB  | 64   | 2TB              | 2TB      | 200 €/p.m.     |
 | 256Pool  | 256GB  | 128  | 4TB              | 4TB      | 400 €/p.m.     |
+| 512Pool  | 512GB  | 256  | 16TB             | 16TB     | 800 €/p.m.     |
 
 
-if you have 2 containers with 500MB memory each, you only need the micro pool
+if you have 2 containers with 500MB memory each, you only need the micro pool.
+
+with 256Pool or higher, we can dedicate a single machine just for you, at no extra charge,
+or even send a machine to your own facility so you can use the same cloud experience on-prem.
 
 
 ## Additional options
 
 | Plan          | Unit        | Price      |
 |---------------|-------------|------------|
+| LV2           | TB p.m.     | 30 €       |
 | Archival      | TB p.m.     | 6 €        |
 | Transit       | MBit/s      | 2 €        |
 
@@ -36,5 +41,4 @@ if you have 2 containers with 500MB memory each, you only need the micro pool
 
 | Device         | Price      |
 |----------------|------------|
-| NVidia 1080 TI | 0.5 €/p.h  |
-| NVidia 4090    | 3   €/p.h  |
+| NVidia L4      | 250 €/p.m  |

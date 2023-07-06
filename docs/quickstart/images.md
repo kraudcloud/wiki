@@ -78,11 +78,3 @@ you can copy any image you built locally to the cloud using kra push.
 kra push
 ```
 
-
-it is also possible to load images using the docker cli,
-but this is slow and will no longer be supported once all use cases are covered by kra
-
-
-```sh
-docker --context default save myimage | docker --context kraud.myorg load
-```
