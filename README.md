@@ -1,6 +1,6 @@
 the kraudcloud documentation,
 
-available on https://docs.kraudcloud.com
+available on <https://docs.kraudcloud.com>
 
 prepare:
 

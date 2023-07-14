@@ -10,7 +10,22 @@ Similarly you cannot directly acess pods from the internet. Instead we manage an
 
 your cluster comes with a default ingress and domain managed by kraud.
 
-currently kubectl is required to interact with the ingress.
+=== "kra"
+
+    to explore your domains, use
+
+    ```sh
+    kra domain ls
+    ```
+
+    find your ingress domain here (it should be of the format `*.[\w\d]+.1d.pt`)
+
+    ```{hl_lines="2"}
+    Domain                        Routes  
+    *.123123.1d.pt
+    *.example.com
+    meilisearch.example.com       1
+    ```
 
 === "kubectl"
 
@@ -179,9 +194,19 @@ currently kubectl is required to interact with the ingress.
 
 ## using your own custom domain
 
-A domain must be bound to an ingress before it is routed and it can only be bound to one ingress. To bind a domain, put it into a tls field in ingress.
+A domain must be bound to an ingress before it is routed and it can only be bound to one ingress.
+
+=== "kra"
+
+    To bind add your own domain, use:
+
+    ```
+    kra domain add web.example.com
+    ```
 
 === "kubectl"
+
+    To bind a domain, put it into a tls field in ingress.
 
     ```
     kubectl edit ingress default
@@ -209,6 +234,14 @@ depending on your DNS provider, if you want to use the bare "example.com" on you
 ## using a custom wildcard domain
 
 adding a wildcard domain such as "*.example.com" allows routing in kraud ingress based on any subdomain of that wildcard without having to set a cname each time.
+
+=== "kra"
+
+    ```
+    kra domain add '*.example.com'
+    ```
+
+    a host may then pick any subdomain
 
 === "kubectl"
 
@@ -238,7 +271,6 @@ adding a wildcard domain such as "*.example.com" allows routing in kraud ingress
 
 if you'd like to take in traffic that is not based on hostnames (http/https or tls with sni) you can open a raw tcp port on the ingress controller. By default each vpc has 4 ports available. More are available as an addon if needed, but you should consider using hostname (sni) routes where possible. Raw tcp ports are **not protected by the CDN** and may be shut down in case of an attack or other event that disturbs other tenants.
 
-
 the syntax for the label is `kr.ingress.{container-port}=tcp://`
 
 then discover the port that was assigned in `docker ps`
@@ -252,6 +284,5 @@ Enter password:
 ```
 
 note that exposing mariadb to the internet without tls is probably a terrible idea, this is for demonstration only.
-
 
 ## raw IP ingress
