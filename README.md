@@ -13,4 +13,4 @@ for dev:
 for prod:
 
     mkdocs build -f mkdocs.insiders.yml
-    rsync -av site/  leweb:/srv/docs.kraudcloud.com
+    rsync -av site/  leweb2:/srv/docs.kraudcloud.com

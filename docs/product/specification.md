@@ -10,7 +10,7 @@ Kraud is a Platform as a Service (PaaS) with a broad set of features and compati
 | Feature                   | SLA | Redundancy  | Security Barriers  | Readyness  |
 |---------------------------|-----|-------------|-----------|-----------------------|
 | __compute__ ||||
-| Managed Docker        | no  | :material-check:{ .green }  N+2 in 1 Zone      | microvm+vpc | Usable |
+| Managed Containers    | [90%](../sla) | :material-check:{ .green }  N+2 in 1 Zone      | microvm+vpc | Usable |
 | Managed Kubernetes    | no  | :material-check:{ .green }  N+2 1 Zone      | microvm+vpc | Experimental          |
 | Managed Apps          | no  | :material-check:{ .green }  N+2 1 Zone      | microvm+vpc| Experimental          |
 | Confidential Compute  | no  | :material-alert:{.red} 1 Node (1) { .annotate } | AMD SEV-SNP | Experimental          |
@@ -20,9 +20,8 @@ Kraud is a Platform as a Service (PaaS) with a broad set of features and compati
 | Direct Ingress        | no  | :material-alert:{.red}  1 Rack (2) | :material-alert:{.red} exposed (3)  | Experimental          |
 | __storage__ ||||
 | Ephemeral NVME        | no  | :material-alert:{.red} 0 (4)             | ephemeral encryption | Usable |
-| Block Volumes         | no  | :material-check:{ .green } 3N in 1 Zone  | isolated machine     | Usable |
-| GFS Volumes           | no  | :material-check:{ .green } 3N in 1 Zone  | isolated machine     | Experimental |
-| RED Volumes           | no  | :material-alert:{.red}  2N in 1 Zone (5) | isolated machine     | Experimental |
+| LV2 Volumes           | no  | :material-check:{ .green } 3N in 1 Zone  | isolated machine     | Usable |
+| NFS Volumes           | [99%](../sla) | :material-check:{ .green } 1+1 in 1+1 Zone | isolated machine     | Experimental |
 | LV Volumes            | no  | :material-alert:{.red}  2N on 1 Host (6) | LVM | Usable |
 
 !!! quote ""
@@ -35,32 +34,24 @@ Kraud is a Platform as a Service (PaaS) with a broad set of features and compati
 
 
 
-## Datacenter, Physical Security
+## Availability Zones
+
+| Zone           | Datacenter Operator                     | ISO  27001  | Renewable Energy  |
+|----------------|-----------------------------------------| ----------- | ----------------- |
+| UCA (default)  | [3U Telecom](https://www.3utelecom.de/) | [yes](ISO-27001-Zertifikat-BER.pdf) | [100%](Entwertungsnachweis3UTELECOMGmbHfuer2020.pdf) | 
+| YCA            | [Hetzner Online GmbH](https://www.hetzner.com/unternehmen/rechenzentrum/) | [yes](https://www.hetzner.com/assets/downloads/FOX-Certificate.pdf) |[100%](https://www.hetzner.com/de/assets/Uploads/downloads/oekostrom-zertifikat-2022.pdf) |
+| LMU            | [LMU Klinikum](https://www.lmu.de/en/) | no | ? |
 
 
-Kraud is physically located in the colo datacenter FSN1-DC2 [Hetzner Online GmbH](https://www.hetzner.com/unternehmen/rechenzentrum/)
-
- - [Technische und organisatorische Maßnahmen nach Art. 32 DS-GVO](TOM.pdf)
- - [ISO27001 Certification](https://www.hetzner.com/assets/downloads/FOX-Certificate.pdf)
- - [100% renewable energy cert](https://www.hetzner.com/de/assets/Uploads/downloads/oekostrom-zertifikat-2022.pdf)
-
-Access is documented with logs of name, timestamp and surveillance camera snapshot.
-
-
-## Security Architecture
+## Data Security
 
 Tenant resources are isolated from other tenants using [microvms](/technology/architecture/#microvms)
-Additionally customers with extremly sensitive data may choose to protect against CPU bugs with [confidential vms](/technology/confidential/)
+
+All Volumes are encrypted at rest and protected against physical theft. <br>
+Customers with extremly sensitive data may additionally want [encryption at use](/technology/confidential/)
 
 Traffic within customer VPC networks is [encrypted with wireguard](/technology/vpc/#encrypted-everything) even within the same physical rack, 
 to protect against sideband attacks and network intrusion.
 
 All external traffic arriving at a [managed ingress](/quickstart/ingress/) is load balanced, authentication and filtered before entering a VPC. Customers who prefer [raw ingresses](/quickstart/ingress/#raw-tcp-ingress) will have to apply their own protection,
 such as firewall rules inside the vm itself.
-
-Data at rest is separated from customer vms and accessible only to the hypervisor.
-
-
-
-
-

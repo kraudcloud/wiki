@@ -52,6 +52,7 @@ nav:
     - Product:
       - Specification: product/specification.md
       - Pricing: product/pricing.md
+      - SLA: product/sla.md
   - Blog:
     - Index: blog/index.md
   - Dashboard: http://kraudcloud.com/dashboard/
