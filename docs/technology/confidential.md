@@ -31,4 +31,4 @@ Most cloud providers will provide a way to easily use SNP attestation in a way t
 We actively choose not to offer that for many reasons.
 
 If you wish to implement SNP attestation yourself, have a go! The code running inside the vm is called cradle,
-and fully documented, for you to review for backdoors and inject your own remote attestation mechanism.
+and fully available [here](https://github.com/kraudcloud/cradle), for you to review for backdoors and inject your own remote attestation mechanism.
