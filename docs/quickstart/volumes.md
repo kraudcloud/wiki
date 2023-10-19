@@ -20,6 +20,32 @@ will be executed whenever the host is back. users of lv2 should prepare for that
 
 ## creating your first volume
 
+=== "kra"
+
+    docker supports volumes natively, and the compose spec works out of the box
+
+    ```{.yaml title=docker-compose.yaml}
+    version: "3.9"
+
+    volumes:
+      example:
+        driver: nfs
+        driver_opts:
+            size: 10G
+    
+    services:
+      nginx:
+        image: ubuntu
+        volumes:
+          - example:/data
+
+    ```
+
+    ```sh
+    kra up
+    ```
+
+
 === "docker"
 
     docker supports volumes natively, and the cli works out of the box
@@ -30,95 +56,25 @@ will be executed whenever the host is back. users of lv2 should prepare for that
     ```
     ```sh
     root@warmhearted_snow:/# mount | grep /data
-    /dev/vdc on /data type ext4 (rw,nodev,relatime)
+    fs0 on /data type virtio (rw,relatime)
     root@warmhearted_snow:/# df -h | grep data
     /dev/volumes/example  9.8G   28K  9.3G   1% /data
     ```
 
+## managing volumes
 
-=== "kubectl"
-
-    k8s uses PersistentVolumeClaim to create volumes
-
-    ```yaml title="example.yaml"
-    ---
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-      name: postgres
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 100G
-      storageClassName: block
-    ---
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: postgres
-    spec:
-      containers:
-      - name:  postgres
-        image: postgres
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: postgres
-      volumes:
-      - name: postgres
-        persistentVolumeClaim:
-          claimName: postgres
-    ---
-    ```
-    ```bash
-    kubectl apply -f example.yaml
-    ```
-
-
-
-=== "compose"
-
-    docker supports volumes natively, and the compose spec works out of the box
-
-    ```{.yaml title=docker-compose.yaml}
-    version: "3.9"
-    volumes:
-      - example
-    services:
-      nginx:
-        image: ubuntu
-        volumes:
-          - example:/data
-
-    ```
+=== "kra"
 
     ```sh
-    docker volume create example
-    docker compose up -d
-    docker volume inspect example
+    kra vol
     ```
 
-=== "swarm"
-
-    docker supports volumes natively, and the compose spec works out of the box
-
-    ```{.yaml title=docker-compose.yaml}
-    version: "3.9"
-    volumes:
-      - example
-    services:
-      nginx:
-        image: ubuntu
-        volumes:
-          - example:/data
-
-    ```
+=== "docker"
 
     ```sh
-    docker stack deploy -c ./docker-compose.yaml mystack
-    docker volume inspect example
+    docker --context kraud.cloud volume ls
     ```
+
 
 
 ## WebDAV Access

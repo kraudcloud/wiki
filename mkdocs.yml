@@ -42,7 +42,9 @@ nav:
       - Setup: quickstart/setup.md
       - Container Images: quickstart/images.md
       - Incoming Connections: quickstart/ingress.md
+      - Public IP Addresses: quickstart/pubnet.md
       - Persistent Volumes: quickstart/volumes.md
+      - Virtual Machines:  quickstart/pvm.md
       - Confidential Compute: quickstart/confidential.md
     - Technology:
       - Compute:  technology/architecture.md

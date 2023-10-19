@@ -1,6 +1,6 @@
-# Accepting Incoming Connections
+# Routing Incoming HTTPS Connections
 
-Pods are not directly exposed to the internet and do not have a public IP assigned. Instead they are connected to each other using a [wireguard](https://www.wireguard.com/) mesh network.
+Pods are not directly exposed to the internet by default. Instead they are connected to each other using a [wireguard](https://www.wireguard.com/) mesh network we call the vpc.
 
 If you're familiar with docker networks or kubernetes, this will feel natural. The network is managed for you by the kraud control plane but does **not** intersect with other tenants networks. You cannot directly access a pod in a different account without going through a gateway.
 
@@ -12,51 +12,48 @@ your cluster comes with a default ingress and domain managed by kraud.
 
 === "kra"
 
-    to explore your domains, use
+    to find your ingress domain use
 
     ```sh
-    kra domain ls
+    kra in ig
     ```
 
-    find your ingress domain here (it should be of the format `*.[\w\d]+.1d.pt`)
-
-    ```{hl_lines="2"}
-    Domain                        Routes  
-    *.123123.1d.pt
-    *.example.com
-    meilisearch.example.com       1
-    ```
-
-=== "kubectl"
-
-    to explore your default ingress, use
+    as long form example:
 
     ```sh
-    kubectl describe ingress default
+    $ kra inflow ingress
+    id                                    domain           
+    0822f56e-f813-42c5-8588-98036ae3f895  foo.1d.pt
     ```
 
-    find your ingress domain here
-
-
-    ```{ .yaml hl_lines="4"}
-    Name:             default
-    Labels:           <none>
-    Namespace:        default
-    Address:          123123.1d.pt
-    Default backend:
-    TLS:
-      SNI routes *.123123.1d.pt
-    Rules:
-      Host                  Path  Backends
-      ----                  ----  --------
-      files.123123.1d.pt
-                            /   bountiful_paper:80 ()
-    Annotations:            <none>
-    Events:                 <none>
-
+    or as json
+    ```sh
+    kra in ig -o json
     ```
 
 ## routing your first service
+
+=== "kra"
+
+    docker compose does not have ingresses or services natively, so we generate them from tags.
+
+    the syntax is `kr.ingress.{container-port}=https://{domain}/{path}`
+
+    to use a subdomain of your default assigned ingress domain, use sub.* , i.e.
+
+    ```yaml title="docker-compose.yaml"
+    version: "3.9"
+    services:
+      nginx:
+        labels:
+          kr.ingress.80: https://nginx.*
+        image: "nginx"
+    ```
+    
+    ```bash
+    kra up
+    ```
+
 
 === "docker"
 
@@ -72,125 +69,6 @@ your cluster comes with a default ingress and domain managed by kraud.
 
     will make your container available at https://nginx.123123.1d.pt
 
-=== "kubectl"
-
-    you can use the same labels as with the docker api to autogenerate routes.
-    however, using k8s objects directly allows for more fine grained control.
-
-
-    let's start with launching a pod and service
-
-    ```yaml title="example.yaml"
-    ---
-    apiVersion: v1
-    kind: Image
-    metadata:
-      name: hashicorp-http-echo
-    spec:
-      ref: hashicorp/http-echo
-    ---
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: echo1
-      labels:
-        app:  echo
-        text: hello
-    spec:
-      containers:
-      - name:   echo
-        image:  hashicorp-http-echo
-        args: ["-text=\"hello from pod1\""]
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: echo
-    spec:
-      selector:
-        app: echo
-      ports:
-        - protocol:   TCP
-          port:       80
-          targetPort: 5678
-    ---
-    ```
-    ```bash
-    kubectl apply -f example.yaml
-    ```
-
-
-    then edit the default ingress to route a new host to the created service
-
-
-    ```
-    kubectl edit ingress default
-    ```
-
-    ``` {.yaml title="ingress.yaml" hl_lines="8 10"}
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: default
-    spec:
-      tls:
-        - hosts:
-          - echo.123123.1d.pt
-      rules:
-      - host: echo.123123.1d.pt
-        http:
-          paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 80
-    ```
-
-=== "compose"
-
-    docker does not have ingresses or services natively, so we generate them from tags.
-
-    the syntax is `kr.ingress.{container-port}=https://{domain}/{path}`
-
-    to use a subdomain of your default assigned ingress domain, use sub.* , i.e.
-
-    ```yaml title="docker-compose.yaml"
-    version: "3.9"
-    services:
-      nginx:
-        labels:
-          kr.ingress.80: https://nginx.*
-        image: "nginx"
-    ```
-    
-    ```bash
-    docker compose up
-    ```
-
-=== "swarm"
-
-    docker does not have ingresses or services natively, so we generate them from tags.
-
-    the syntax is `kr.ingress.{container-port}=https://{domain}/{path}`
-
-    to use a subdomain of your default assigned ingress domain, use sub.* , i.e.
-
-    ```yaml title="docker-compose.yaml"
-    version: "3.9"
-    services:
-      nginx:
-        labels:
-          kr.ingress.80: https://nginx.*
-        image: "nginx"
-    ```
-    
-    ```bash
-    docker stack deploy -c ./docker-compose.yaml mystack
-    docker stack ls
-    ```
 
 ## using your own custom domain
 
@@ -204,24 +82,6 @@ A domain must be bound to an ingress before it is routed and it can only be boun
     kra domain add web.example.com
     ```
 
-=== "kubectl"
-
-    To bind a domain, put it into a tls field in ingress.
-
-    ```
-    kubectl edit ingress default
-    ```
-
-    ```{.yaml title="ingress.yaml" hl_lines="8"}
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: default
-    spec:
-      tls:
-        - hosts:
-          - web.example.com
-    ```
 
 then add a CNAME record "web" to your "example.com" domain
 with the content being your ingress address, in this example "123123.1d.pt."
@@ -243,46 +103,3 @@ adding a wildcard domain such as "*.example.com" allows routing in kraud ingress
 
     a host may then pick any subdomain
 
-=== "kubectl"
-
-    ```
-    kubectl edit ingress default
-    ```
-
-    ```{.yaml title="ingress.yaml" hl_lines="8"}
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: default
-    spec:
-      tls:
-        - hosts:
-          - *.example.com
-    ```
-
-    a host rule may then pick any subdomain
-    ```yaml
-    rules:
-    - host: echo.example.com
-      http:
-    ```
-
-## raw tcp ingress
-
-if you'd like to take in traffic that is not based on hostnames (http/https or tls with sni) you can open a raw tcp port on the ingress controller. By default each vpc has 4 ports available. More are available as an addon if needed, but you should consider using hostname (sni) routes where possible. Raw tcp ports are **not protected by the CDN** and may be shut down in case of an attack or other event that disturbs other tenants.
-
-the syntax for the label is `kr.ingress.{container-port}=tcp://`
-
-then discover the port that was assigned in `docker ps`
-
-```bash
-$ docker --context=kraud.aep run -dti -e MARIADB_ROOT_PASSWORD=bob -l kr.ingress.3306=tcp:// mariadb
-$ docker --context=kraud.aep ps  | grep mariadb
-p913ea5caf9e  [..] 96jpgtx8.1d.pt:28791->3306/tcp default/blithesome_paper
-$ mariadb -h 96jpgtx8.1d.pt -P 28791 -p -u root
-Enter password:
-```
-
-note that exposing mariadb to the internet without tls is probably a terrible idea, this is for demonstration only.
-
-## raw IP ingress

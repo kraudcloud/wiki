@@ -31,6 +31,14 @@ kra setup docker
 
 ## using the kraud remote context
 
+=== "kra"
+
+    kra is the official kraud cli and supports the most features
+
+    ```bash
+    kra user me
+    ```
+
 === "docker"
 
     install the official docker cli from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
@@ -47,26 +55,12 @@ kra setup docker
     docker info
     ```
 
-=== "kubectl"
-
-    install the official kubernetes tools from [https://kubernetes.io/docs/tasks/tools/](https://kubernetes.io/docs/tasks/tools/)
-
-    Note that only kubectl version v1.25 works.
-    We will no longer maintain api compatbility with kubernetes from v1.26 onwoards and instead
-    encourage users who want  k8s to switch to [kind](https://kind.sigs.k8s.io/) instead
-
-    to switch contexts use
-
-    ```bash
-    kubectl config use-context kraud.myuser
-    kubectl describe node
-    ```
-
 === "compose"
 
     install the official docker cli from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
     most compose commands work on kraud, but the docker cli is somewhat limited.
+    we generally recommend using kra instead.
 
     You can use docker context use to quickly switch between the kraud remote context and your local docker (default).
     for other methods, [see the official docs](https://docs.docker.com/engine/context/working-with-contexts/#use-a-different-context)
@@ -83,6 +77,7 @@ kra setup docker
     install the official docker cli from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
     most swarm commands work on kraud, but the docker cli is somewhat limited.
+    we generally recommend using kra instead.
 
     You can use docker context use to quickly switch between the kraud remote context and your local docker (default).
     for other methods, [see the official docs](https://docs.docker.com/engine/context/working-with-contexts/#use-a-different-context)
@@ -98,14 +93,26 @@ kra setup docker
 
 ## starting your first pod/container
 
-=== "docker"
+=== "kra"
 
+    kra natively supports docker compose
+
+    ```yaml title="docker-compose.yaml"
+    version: "3.9"
+    services:
+      nginx:
+        image: "nginx"
+    ```
+    
+    ```bash
+    kra up
+    ```
+=== "docker"
 
     ```
     docker context use kraud.myuser
     docker run -ti alpine
     ```
-
 
     alternatively, to only temporarily switch context:
 
@@ -114,31 +121,6 @@ kra setup docker
     ```
 
 
-=== "kubectl"
-
-    ```yaml title="example.yaml"
-    ---
-    apiVersion: v1
-    kind: Image
-    metadata:
-      name: ubuntu
-    spec:
-      ref: ubuntu
-    ---
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: ubuntu
-    spec:
-      containers:
-      - name:  ubuntu
-        image: ubuntu
-    ---
-    ```
-    ```bash
-    kubectl apply -f example.yaml
-    kubectl logs -f ubuntu
-    ```
 
 
 === "compose"
@@ -151,6 +133,7 @@ kra setup docker
     ```
     
     ```bash
+    docker context use kraud.myuser
     docker compose up
     ```
 
@@ -164,6 +147,7 @@ kra setup docker
     ```
     
     ```bash
+    docker context use kraud.myuser
     docker stack deploy -c ./docker-compose.yaml mystack
     docker stack ls
     ```
