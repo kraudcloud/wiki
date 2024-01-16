@@ -4,7 +4,7 @@
 A thing people do with the cloud is that they rent virtual computers.
 This is convenient because you want the control and fun of installing a computer, but not the noise and responsibility of cleaning the fans all the time, yuck! Is this a good deal? I don't know. [For who anyway?](https://duckduckgo.com/?q=bezos+yacht).
 
-Self hosting is key to Krauds mission of bringing the cloud home. That plus the primary mission of energy (and price) efficiency does mean we do not rent out computers. That's ok, someone else will gladly run a [money furnace](https://www.statista.com/statistics/1243513/top-10-cloud-vendors-by-revenue-fiscal-quarter-global/) for you. Read more about energy in [the  mission statement](/mission)
+Self hosting is key to Krauds mission of bringing the cloud home. That plus the primary mission of energy (and price) efficiency does mean we do not rent out computers. That's ok, someone else will gladly run a [money furnace](https://www.statista.com/statistics/1243513/top-10-cloud-vendors-by-revenue-fiscal-quarter-global/) for you. Read more about energy in [the  mission statement](/mission/)
 
 
 ## microvms
@@ -17,7 +17,7 @@ claiming sub 125ms startup. Cool, but...
 Ah yes that's booting up a vm **and** a docker container in 100ms, no problem!
 
 There's so much more to unpack here. Kraud Cradle is more akin to AWS Nitro Enclaves with encrypted memory,
-except that Nitro Enclaives have their trust anchor in the cloud  (bigcloud always finds a way, haha) and cradle is open source so you can just bring your own trust anchor. (see [confidential compute](/technology/confidential))
+except that Nitro Enclaives have their trust anchor in the cloud  (bigcloud always finds a way, haha) and cradle is open source so you can just bring your own trust anchor. (see [confidential compute](/technology/confidential/))
 
 
 This is key to energy efficiency, since alot of times people leave servers running idle, in case someone might need them. Super embarrassing if you have your first visitor and the website takes a minute to load (good old Heroku times).

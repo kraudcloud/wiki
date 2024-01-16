@@ -39,7 +39,7 @@ If you have storage attached, moving is slighly more involved. We currently reco
 
 1. stop all pods
 2. create a new volume with `docker volume create myvol --driver nfs`
-3. copy all the files from the old to the new volume, for example by using [webdav](http://127.0.0.1:8000/quickstart/volumes/#webdav-access) or with docker exec, depending on your use case.
+3. copy all the files from the old to the new volume, for example by using [webdav](/quickstart/volumes/#webdav-access) or with docker exec, depending on your use case.
 4. delete the old volume with `docker volume rm oldvol`
 5. recreate your pods with `-l kr.zone=yca`
 
